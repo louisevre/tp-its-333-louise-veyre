@@ -16,7 +16,13 @@ def utilisateurs():
 
 
 ## EXO2: API POST: renvoyer un nom fourni en parametre - API end point name: "api/utilisateurs"
+ data = request.get_json(silent=True)
 
+    if not data or "nom" not in data:
+        return jsonify({"erreur": "Champ 'nom' manquant"}), 400
+
+    nom = data["nom"]
+    return jsonify({"utilisateur": nom}), 201
 # to be tested with curl: 
 # >> curl -i -X GET http://localhost:5000/api/salutation
 # >> curl -i -X POST -H 'Content-Type: application/json' -d '{"nom": "Bob"}' http://localhost:5000/api/utilisateurs
