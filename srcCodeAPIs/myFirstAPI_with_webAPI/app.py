@@ -4,6 +4,17 @@ app = Flask(__name__)
 
 ## EXO1: API GET: renvoyer un helloworld - API end point name: "api/salutation"
 
+@app.route('/api/salutation', methods=['GET'])
+def salutation():
+    return jsonify({"message": "Hello World"})
+
+@app.route('/api/utilisateurs', methods=['POST'])
+def utilisateurs():
+    data = request.get_json(silent=True) or {}
+    nom = data.get("nom")
+    return jsonify({"utilisateur": nom})
+
+
 ## EXO2: API POST: renvoyer un nom fourni en parametre - API end point name: "api/utilisateurs"
 
 # to be tested with curl: 
